@@ -7,6 +7,8 @@ exports.all = async (req, res) => {
   return res.json(answer);
 };
 
+// это не требовалось
+
 exports.find = async (req, res, next) => {
   const answer = await findOne(req.params.id, cardsData);
   if (!answer) {

@@ -2,6 +2,7 @@ const usersData = require('../data/users.json');
 const { findOne, findAll } = require('../helpers/helpers');
 const NotFoundError = require('../helpers/errors');
 
+// async/await на случай большого файла
 exports.all = async (req, res) => {
   const answer = await findAll(usersData);
   return res.json(answer);

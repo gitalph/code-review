@@ -1,10 +1,8 @@
-## Installation: 
+## Installation:
 
 ```
 # production
-npm run build
+npm start
 # develop
 npm run dev
-# gh-pages
-npm run deploy
 ```
