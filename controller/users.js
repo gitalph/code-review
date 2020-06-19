@@ -1,17 +1,17 @@
-const usersData = require('../data/users.json');
-const { findOne, findAll } = require('../helpers/helpers');
-const NotFoundError = require('../helpers/errors');
+const usersData = require('../data/users');
+const { template } = require('../helpers/helpers');
 
-// async/await на случай большого файла
-exports.all = async (req, res) => {
-  const answer = await findAll(usersData);
-  return res.json(answer);
+const paramOne = {
+  message: 'Нет пользователей с таким ID',
+  data: usersData,
+  all: false,
 };
 
-exports.find = async (req, res, next) => {
-  const answer = await findOne(req.params.id, usersData);
-  if (!answer) {
-    return next(new NotFoundError('Нет пользователя с таким ID'));
-  }
-  return res.json(answer);
+const paramAll = {
+  message: 'Пользователей не найдено',
+  data: usersData,
+  all: true,
 };
+
+exports.find = async (req, res, next) => template(paramOne, req, res, next);
+exports.all = async (req, res, next) => template(paramAll, req, res, next);

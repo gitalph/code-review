@@ -1,3 +1,23 @@
-exports.findOne = async (userId, data) => data.find(({ _id: id }) => id === userId);
+const NotFoundError = require('./errors');
 
-exports.findAll = async (data) => data;
+async function findOne(data, userId) {
+  return data.find(({ _id: id }) => id === userId);
+}
+
+async function findAll(data) {
+  return data;
+}
+
+// основной шаблон поиска для всех случаев
+exports.template = async (params, req, res, next) => {
+  try {
+    const answer = params.all
+      ? await findAll(params.data) : await findOne(params.data, req.params.id);
+    if (!answer) {
+      return next(new NotFoundError(params.message));
+    }
+    return res.json(answer);
+  } catch (e) {
+    return next(new Error('Ошибка сервера'));
+  }
+};

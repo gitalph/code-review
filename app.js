@@ -22,13 +22,15 @@ app.use((req, res, next) => {
 });
 
 // обработчик ошибок по умолчанию
-app.use((err, req, res) => {
+// eslint-disable-next-line no-unused-vars
+app.use((err, req, res, next) => {
   res.status(err.status || 500);
-  res.send({
+  res.json({
     message: err.message,
   });
 });
 
 app.listen(HTTP_PORT, () => {
+  // eslint-disable-next-line no-console
   console.log(`Server running on port ${HTTP_PORT}`);
 });

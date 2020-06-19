@@ -1,18 +1,17 @@
-const cardsData = require('../data/cards.json');
-const { findOne, findAll } = require('../helpers/helpers');
-const NotFoundError = require('../helpers/errors');
+const cardsData = require('../data/cards');
+const { template } = require('../helpers/helpers');
 
-exports.all = async (req, res) => {
-  const answer = await findAll(cardsData);
-  return res.json(answer);
+const paramOne = {
+  message: 'Нет карточек с таким ID',
+  data: cardsData,
+  all: false,
 };
 
-// это не требовалось
-
-exports.find = async (req, res, next) => {
-  const answer = await findOne(req.params.id, cardsData);
-  if (!answer) {
-    return next(new NotFoundError('Нет карточки с таким ID'));
-  }
-  return res.json(answer);
+const paramAll = {
+  message: 'Карточек не найдено',
+  data: cardsData,
+  all: true,
 };
+
+exports.find = async (req, res, next) => template(paramOne, req, res, next);
+exports.all = async (req, res, next) => template(paramAll, req, res, next);
