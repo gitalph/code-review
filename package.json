@@ -1,7 +1,7 @@
 {
   "name": "code-review",
   "version": "1.0.0",
-  "description": "code review yandex",
+  "description": "branch for reviewing",
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
