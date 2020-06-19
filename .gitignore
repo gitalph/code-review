@@ -1,0 +1,19 @@
+.DS_Store
+Thumbs.db
+.idea
+
+*.sublime*
+.vscode
+
+node_modules/
+
+# Билд
+dist/
+# Logs
+logs
+*.log
+npm-debug.log*
+*.log*
+
+# Optional npm cache directory
+.npm
