@@ -9,7 +9,7 @@ async function findAll(data) {
 }
 
 // основной шаблон поиска для всех случаев
-exports.template = async (params, req, res, next) => {
+exports.mainHelper = async (params, req, res, next) => {
   try {
     const answer = params.all
       ? await findAll(params.data) : await findOne(params.data, req.params.id);

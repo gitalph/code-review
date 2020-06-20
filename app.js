@@ -1,6 +1,8 @@
 const express = require('express');
 const path = require('path');
 const NotFoundError = require('./helpers/errors.js');
+const usersRouter = require('./routes/usersRouter.js');
+const cardsRouter = require('./routes/cardsRouter.js');
 
 const app = express();
 const HTTP_PORT = 3000;
@@ -13,8 +15,8 @@ const pages = path.join(__dirname, 'public');
 app.use(express.static(pages));
 
 // маршруты
-app.use('/users/', require('./routes/users.js'));
-app.use('/cards', require('./routes/cards.js'));
+app.use('/users/', usersRouter);
+app.use('/cards/', cardsRouter);
 
 // общая ошибка адреса, ошибка ID передается из контроллера в следующий блок
 app.use((req, res, next) => {
