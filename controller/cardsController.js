@@ -1,3 +1,8 @@
+// Надо исправить:
+// в ответ на запрос GET localhost:3000/cards сервер вернёт JSON из файла cards.json;
+// для получения путей к файлам с данными использовать модуль path
+// нет обработки ошибок, которые могут возникнуть при чтении файлов
+// например при отсутствующем файле приложение просто не запуститься с ошибкой Cannot find module
 const cardsData = require('../data/cardsData.json');
 const { mainHelper } = require('../helpers/mainHelper');
 
